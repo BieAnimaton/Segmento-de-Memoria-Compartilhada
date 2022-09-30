@@ -1,0 +1,1 @@
+# Segmento-de-Memoria-Compartilhada
