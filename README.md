@@ -1,17 +1,17 @@
 
 # Segmento de Memória Compartilhada
-Códigos feitos em C para criar um segmento de memória compartilhada, açém de escrever, ler e apagar o mesmo.
+Códigos feitos em C para criar um segmento de memória compartilhada, além de escrever, ler e apagar o conteúdo.
 
 # Observações adicionais:
 Para compilar: `cc progN.c -o progN`  
 Para executar: `./progN`  
 Obter informações do IPC (semáforos, memória compartilhada e filas de mensagens): `ipcs`
 
-## Bibliotecas
+## Bibliotecas:
 `#include <sys/ipc.h>`  
 `#include <sys/shm.h>`
 
-## Criando variaveis
+## Criando variaveis:
 ```
 key_t  key;
 int    shmid, tamanho=2048;
@@ -49,7 +49,7 @@ Os parâmetros são: variável da chave, tamanho desejado e 0.
 - Se O shmid não conseguir criar ou descobrir o segmento de memória, irá retorna -1, caso contrári, irá retorna qualquer outro valor.
 **Os comandos de descobrir e criar chave são usados em todos os programas, porém decidi ocultá-los para melhor explicação dos outros**.
 
-## Comando para **criar** um segmento de memória ao processo (P1 - Produtor).
+## Comando para **criar** um segmento de memória (P1 - Produtor).
 - Antes de mais nada, precisamos criar um ponteiro para ser o intermediário e conectá-lo.
 ```
 ...
@@ -65,7 +65,7 @@ Os parâmetros de shmat são: o endereço (id) do segmento, 0 e 0.
 - Neste código, estamos copiando a mensagem "Oi mundo" para o ponteiro, ou seja, copiando para o segmento.
 - Função Produtor.
 
-## Comando para **ler** um segmento de memória ao processo (P1 - Produtor).
+## Comando para **ler** um segmento de memória (P1 - Consumidor).
 - Antes de mais nada, precisamos criar um ponteiro para ser o intermediário e conectá-lo.
 ```
 ...
@@ -76,7 +76,7 @@ printf("Recuperando %s do segmento %d.\n",shm,shmid); //Lendo
 ```
 Para ler, basta apenas imprimir o conteúdo do ponteiro.
 
-## Comando para **remover** um segmento de memória ao processo (P1 - Produtor).
+## Comando para **remover** um segmento de memória.
 ```
 ...
 shmctl(shmid,IPC_RMID,0);
